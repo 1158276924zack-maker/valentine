@@ -24,14 +24,14 @@
         border-radius: 25px;
         box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         position: relative;
-        width: 320px;
+        width: 340px;
         max-width: 90%;
     }
 
     h1 {
-        margin-bottom: 20px;
         color: #ff4d6d;
         font-size: 28px;
+        margin-bottom: 25px;
     }
 
     .love {
@@ -40,33 +40,29 @@
     }
 
     .buttons {
-        position: relative;
-        height: 80px;
-        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
     }
 
     button {
-        padding: 12px 26px;
-        font-size: 16px;
+        padding: 14px 28px;
+        font-size: 18px;
         border: none;
         border-radius: 30px;
         cursor: pointer;
-        position: absolute;
-        transition: 0.15s;
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
-        left: 30px;
-        bottom: 0;
     }
 
+    /* NO button is fixed from the start */
     #no {
         background: #555;
         color: white;
-        right: 30px;
-        bottom: 0;
+        position: fixed;
     }
 </style>
 </head>
@@ -86,15 +82,17 @@
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
+
+// Place NO button initially near the card
 const card = document.querySelector(".card");
+const rect = card.getBoundingClientRect();
+noBtn.style.left = rect.right - 120 + "px";
+noBtn.style.top = rect.bottom - 60 + "px";
 
 function moveButton() {
     const padding = 20;
-
-    const cardRect = card.getBoundingClientRect();
-
-    const maxX = cardRect.width - noBtn.offsetWidth - padding;
-    const maxY = cardRect.height - noBtn.offsetHeight - padding;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -102,8 +100,6 @@ function moveButton() {
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
 }
-
-noBtn.style.position = "absolute";
 
 noBtn.addEventListener("mouseenter", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
@@ -126,7 +122,7 @@ yesBtn.addEventListener("click", () => {
 });
 </script>
 
-
 </body>
 </html>
+
 
