@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Be My Valentine?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9ecf, #ff4d6d);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        padding: 50px 60px;
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        position: relative;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+        color: #ff4d6d;
+        font-size: 32px;
+    }
+
+    button {
+        padding: 14px 28px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        position: absolute;
+        transition: 0.2s;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+        left: 35%;
+        bottom: 40px;
+    }
+
+    #no {
+        background: #555;
+        color: white;
+        left: 60%;
+        bottom: 40px;
+    }
+
+    .love {
+        font-size: 70px;
+        margin-bottom: 15px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="love">❤️</div>
+    <h1>Will you be my Valentine?</h1>
+
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 😢</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+// Make NO button run away
+function moveButton() {
+    const padding = 20;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", moveButton); // mobile support
+
+// Yes button action
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#ff4d6d;
+            color:white;
+            font-size:40px;
+            font-family:Arial;
+            text-align:center;">
+            YAYYY ❤️<br>Best Valentine Ever!!
+        </div>
+    `;
+});
+</script>
+
+</bo<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Be My Valentine?</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff9ecf, #ff4d6d);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .card {
+        background: white;
+        padding: 50px 60px;
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        position: relative;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+        color: #ff4d6d;
+        font-size: 32px;
+    }
+
+    button {
+        padding: 14px 28px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        position: absolute;
+        transition: 0.2s;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+        left: 35%;
+        bottom: 40px;
+    }
+
+    #no {
+        background: #555;
+        color: white;
+        left: 60%;
+        bottom: 40px;
+    }
+
+    .love {
+        font-size: 70px;
+        margin-bottom: 15px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="love"></div>
+    <h1>Will you be my Valentine?</h1>
+
+    <button id="yes">Yes </button>
+    <button id="no">No </button>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+// Make NO button run away
+function moveButton() {
+    const padding = 20;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", moveButton); // mobile support
+
+// Yes button action
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+        <div style="
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#ff4d6d;
+            color:white;
+            font-size:40px;
+            font-family:Arial;
+            text-align:center;">
+            YAYYY <br>Best Valentine Ever!!
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
+dy>
+</html>
