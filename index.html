@@ -15,7 +15,6 @@
         align-items: center;
         font-family: Arial, Helvetica, sans-serif;
         overflow: hidden;
-        text-align: center;
     }
 
     .card {
@@ -23,14 +22,13 @@
         padding: 50px 60px;
         border-radius: 25px;
         box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        text-align: center;
         position: relative;
-        width: 340px;
-        max-width: 90%;
+        z-index: 1;
     }
 
     h1 {
         color: #ff4d6d;
-        font-size: 28px;
         margin-bottom: 25px;
     }
 
@@ -61,8 +59,7 @@
     #no {
         background: #555;
         color: white;
-        position: fixed;
-        transition: left 0.05s linear, top 0.05s linear;
+        position: absolute; /* IMPORTANT */
     }
 </style>
 </head>
@@ -81,45 +78,26 @@
 
 <script>
 const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
 
-// Place NO button initially near the card
-const card = document.querySelector(".card");
-const rect = card.getBoundingClientRect();
-noBtn.style.left = rect.right - 120 + "px";
-noBtn.style.top = rect.bottom - 60 + "px";
+// Move NO FAR AWAY
+function escape() {
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
 
-function moveFarAway() {
-    const padding = 20;
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-    // BIG jumps
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
-
-    noBtn.style.left = randomX + "px";
-    noBtn.style.top = randomY + "px";
+    noBtn.style.position = "fixed"; // escape the card
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 }
 
-// React when mouse gets close
-document.addEventListener("mousemove", (e) => {
-    const rect = noBtn.getBoundingClientRect();
-    const distance =
-        Math.hypot(
-            e.clientX - (rect.left + rect.width / 2),
-            e.clientY - (rect.top + rect.height / 2)
-        );
+// Desktop + mobile
+noBtn.addEventListener("mouseenter", escape);
+noBtn.addEventListener("mousedown", escape);
+noBtn.addEventListener("touchstart", escape);
 
-    if (distance < 120) {
-        moveFarAway();
-    }
-});
-
-// Mobile support
-noBtn.addEventListener("touchstart", moveFarAway);
-
-yesBtn.addEventListener("click", () => {
+document.getElementById("yes").addEventListener("click", () => {
     document.body.innerHTML = `
         <div style="
             height:100vh;
@@ -139,6 +117,8 @@ yesBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
+
 
 
 
