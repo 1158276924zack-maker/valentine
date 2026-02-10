@@ -85,12 +85,16 @@
 
 <script>
 const noBtn = document.getElementById("no");
-const container = document.querySelector(".buttons");
 const yesBtn = document.getElementById("yes");
+const card = document.querySelector(".card");
 
 function moveButton() {
-    const maxX = container.clientWidth - noBtn.offsetWidth;
-    const maxY = container.clientHeight - noBtn.offsetHeight;
+    const padding = 20;
+
+    const cardRect = card.getBoundingClientRect();
+
+    const maxX = cardRect.width - noBtn.offsetWidth - padding;
+    const maxY = cardRect.height - noBtn.offsetHeight - padding;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -98,6 +102,8 @@ function moveButton() {
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
 }
+
+noBtn.style.position = "absolute";
 
 noBtn.addEventListener("mouseenter", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
@@ -120,5 +126,7 @@ yesBtn.addEventListener("click", () => {
 });
 </script>
 
+
 </body>
 </html>
+
