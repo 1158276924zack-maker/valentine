@@ -24,12 +24,25 @@
         border-radius: 25px;
         box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         position: relative;
+        max-width: 90%;
     }
 
     h1 {
-        margin-bottom: 40px;
+        margin-bottom: 25px;
         color: #ff4d6d;
         font-size: 32px;
+    }
+
+    .love {
+        font-size: 70px;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 30px;
     }
 
     button {
@@ -38,27 +51,22 @@
         border: none;
         border-radius: 30px;
         cursor: pointer;
-        position: absolute;
-        transition: 0.2s;
+        transition: transform 0.15s ease;
+    }
+
+    button:active {
+        transform: scale(0.95);
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
-        left: 35%;
-        bottom: 40px;
     }
 
     #no {
         background: #555;
         color: white;
-        left: 60%;
-        bottom: 40px;
-    }
-
-    .love {
-        font-size: 70px;
-        margin-bottom: 15px;
+        position: fixed;
     }
 </style>
 </head>
@@ -69,15 +77,16 @@
     <div class="love">❤️</div>
     <h1>Will you be my Valentine?</h1>
 
-    <button id="yes">Yes 💖</button>
-    <button id="no">No 😢</button>
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 😢</button>
+    </div>
 </div>
 
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 
-// Make NO button run away
 function moveButton() {
     const padding = 20;
     const maxX = window.innerWidth - noBtn.offsetWidth - padding;
@@ -86,13 +95,13 @@ function moveButton() {
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
 
-    noBtn.style.position = "fixed";
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
 }
 
+// Desktop & mobile support
 noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("touchstart", moveButton); // mobile support
+noBtn.addEventListener("touchstart", moveButton);
 
 // Yes button action
 yesBtn.addEventListener("click", () => {
@@ -112,5 +121,9 @@ yesBtn.addEventListener("click", () => {
     `;
 });
 </script>
+
+</body>
 </html>
+
+
 
