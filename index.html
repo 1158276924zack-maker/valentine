@@ -58,11 +58,11 @@
         color: white;
     }
 
-    /* NO button is fixed from the start */
     #no {
         background: #555;
         color: white;
         position: fixed;
+        transition: left 0.05s linear, top 0.05s linear;
     }
 </style>
 </head>
@@ -89,11 +89,12 @@ const rect = card.getBoundingClientRect();
 noBtn.style.left = rect.right - 120 + "px";
 noBtn.style.top = rect.bottom - 60 + "px";
 
-function moveButton() {
+function moveFarAway() {
     const padding = 20;
     const maxX = window.innerWidth - noBtn.offsetWidth - padding;
     const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
+    // BIG jumps
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
 
@@ -101,8 +102,22 @@ function moveButton() {
     noBtn.style.top = randomY + "px";
 }
 
-noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("touchstart", moveButton);
+// React when mouse gets close
+document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const distance =
+        Math.hypot(
+            e.clientX - (rect.left + rect.width / 2),
+            e.clientY - (rect.top + rect.height / 2)
+        );
+
+    if (distance < 120) {
+        moveFarAway();
+    }
+});
+
+// Mobile support
+noBtn.addEventListener("touchstart", moveFarAway);
 
 yesBtn.addEventListener("click", () => {
     document.body.innerHTML = `
@@ -124,5 +139,6 @@ yesBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
