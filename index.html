@@ -56,10 +56,11 @@
         color: white;
     }
 
+    /* FIXED: normal flow first */
     #no {
         background: #555;
         color: white;
-        position: absolute; /* IMPORTANT */
+        position: relative;
     }
 </style>
 </head>
@@ -79,7 +80,7 @@
 <script>
 const noBtn = document.getElementById("no");
 
-// Move NO FAR AWAY
+// Make NO escape
 function escape() {
     const maxX = window.innerWidth - noBtn.offsetWidth;
     const maxY = window.innerHeight - noBtn.offsetHeight;
@@ -87,7 +88,7 @@ function escape() {
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    noBtn.style.position = "fixed"; // escape the card
+    noBtn.style.position = "fixed"; // leave the card only when escaping
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }
@@ -117,8 +118,3 @@ document.getElementById("yes").addEventListener("click", () => {
 
 </body>
 </html>
-
-
-
-
-
