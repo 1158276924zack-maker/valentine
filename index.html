@@ -24,49 +24,49 @@
         border-radius: 25px;
         box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         position: relative;
+        width: 320px;
         max-width: 90%;
     }
 
     h1 {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         color: #ff4d6d;
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .love {
-        font-size: 70px;
+        font-size: 60px;
         margin-bottom: 10px;
     }
 
     .buttons {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        margin-top: 30px;
+        position: relative;
+        height: 80px;
+        margin-top: 20px;
     }
 
     button {
-        padding: 14px 28px;
-        font-size: 18px;
+        padding: 12px 26px;
+        font-size: 16px;
         border: none;
         border-radius: 30px;
         cursor: pointer;
-        transition: transform 0.15s ease;
-    }
-
-    button:active {
-        transform: scale(0.95);
+        position: absolute;
+        transition: 0.15s;
     }
 
     #yes {
         background: #ff4d6d;
         color: white;
+        left: 30px;
+        bottom: 0;
     }
 
     #no {
         background: #555;
         color: white;
-        position: fixed;
+        right: 30px;
+        bottom: 0;
     }
 </style>
 </head>
@@ -85,12 +85,12 @@
 
 <script>
 const noBtn = document.getElementById("no");
+const container = document.querySelector(".buttons");
 const yesBtn = document.getElementById("yes");
 
 function moveButton() {
-    const padding = 20;
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -99,11 +99,9 @@ function moveButton() {
     noBtn.style.top = randomY + "px";
 }
 
-// Desktop & mobile support
 noBtn.addEventListener("mouseenter", moveButton);
 noBtn.addEventListener("touchstart", moveButton);
 
-// Yes button action
 yesBtn.addEventListener("click", () => {
     document.body.innerHTML = `
         <div style="
@@ -113,7 +111,7 @@ yesBtn.addEventListener("click", () => {
             align-items:center;
             background:#ff4d6d;
             color:white;
-            font-size:40px;
+            font-size:36px;
             font-family:Arial;
             text-align:center;">
             YAYYY ❤️<br>Best Valentine Ever!!
@@ -124,6 +122,3 @@ yesBtn.addEventListener("click", () => {
 
 </body>
 </html>
-
-
-
